@@ -1,44 +1,31 @@
-import type { PropsWithChildren } from 'react';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import {
-    SafeAreaView, StyleSheet,
-    Text,
-    useColorScheme,
-    View
+    StyleSheet, useColorScheme
 } from 'react-native';
 
 import {
     Colors
 } from 'react-native/Libraries/NewAppScreen';
-import { Home } from './screens/Home';
+import Explore from './src/screens/Explore';
+import Home from './src/screens/Home';
 
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
+const options = (iconName: string) => (
+    {
+        tabBarIcon: ({ focused }: any) => (
+            <Ionicons
+                style={{ backgroundColor: '#171b25' }}
+                color={'#139A43'}
+                name={focused ? iconName : iconName + '-outline'}
+                size={24}
+            />
+        ),
+    }
+);
 
-function Section({ children, title }: SectionProps): JSX.Element {
-    const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}></Text>
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}>
-                {children}
-            </Text>
-        </View>
-    );
-}
+const Tab = createMaterialBottomTabNavigator();
 
 function App(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
@@ -49,9 +36,20 @@ function App(): JSX.Element {
     };
 
     return (
-        <SafeAreaView style={backgroundStyle}>
-            <Home></Home>
-        </SafeAreaView>
+        <NavigationContainer>
+            <Tab.Navigator
+                initialRouteName={'Home'}
+                activeColor={'white'}
+                inactiveColor={undefined}
+                shifting={true}
+                barStyle={{
+                    backgroundColor: '#171b25',
+                }}
+            >
+                <Tab.Screen options={options('home')} name='Home' component={Home} />
+                <Tab.Screen options={options('compass')} name='Explore' component={Explore} />
+            </Tab.Navigator>
+        </NavigationContainer>
     );
 }
 

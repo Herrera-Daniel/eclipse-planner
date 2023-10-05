@@ -1,14 +1,15 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { AppStyles } from "../../AppStyles";
 
-export const Home = () => {
+const Home = () => {
     return (
-        <ScrollView style={styles.screen}>
+        <ScrollView style={AppStyles.screenView}>
             <View style={styles.welcomeTextContainer}>
-                <Text style={styles.welcomeText}>
+                <Text style={[styles.welcomeText, AppStyles.text]}>
                     Welcome! Get started and plan your eclispe trip!
                 </Text>
-                <TouchableOpacity>
-
+                <TouchableOpacity style={styles.getStartedButton}>
+                    <Text style={AppStyles.text}>Get Started</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>
@@ -16,14 +17,18 @@ export const Home = () => {
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        height: '100%'
+    getStartedButton: {
+        marginTop: 24,
+        borderWidth: 2,
+        borderColor: 'grey',
+        borderStyle: 'solid',
+        borderRadius: 5,
+        padding: 10
     },
     welcomeText: {
         fontSize: 32,
         fontWeight: '500',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     welcomeTextContainer: {
         marginTop: 32,
@@ -32,3 +37,5 @@ const styles = StyleSheet.create({
         alignItems: "center"
     }
 });
+
+export default Home;
