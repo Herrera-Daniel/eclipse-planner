@@ -12,6 +12,10 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Explore from './src/screens/Explore';
 import Home from './src/screens/Home';
+import Trips from './src/screens/Trips';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient('https://eclipse-planner.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh5aGRjeGtocm9wZG1ueXRpaWxoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTY0NzQyMDIsImV4cCI6MjAxMjA1MDIwMn0.RUdMvotH9Rh5PW9rfK4b-QoATsmTFvDkKiiy7lowjCA')
 
 const options = (iconName: string) => (
 	{
@@ -42,7 +46,6 @@ function App(): JSX.Element {
 				<Tab.Navigator
 					initialRouteName={'Home'}
 					activeColor={'white'}
-					inactiveColor={'#171b25'}
 					shifting={true}
 					barStyle={{
 						backgroundColor: '#171b25',
@@ -50,6 +53,7 @@ function App(): JSX.Element {
 				>
 					<Tab.Screen options={options('home')} name='Home' component={Home} />
 					<Tab.Screen options={options('compass')} name='Explore' component={Explore} />
+					<Tab.Screen options={options('map')} name='Trips' component={Trips} />
 				</Tab.Navigator>
 			</PaperProvider>
 		</NavigationContainer>

@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-navigation/material-bottom-tabs": "^6.2.17",
     "@react-navigation/native": "^6.1.8",
+    "@supabase/supabase-js": "^2.38.2",
     "react": "18.2.0",
     "react-native": "0.72.5",
     "react-native-ionicons": "^4.6.5",
