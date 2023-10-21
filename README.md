@@ -6,5 +6,4 @@
     - Google maps integration
     - Shareable trips with friends
     - No ADs!!!
-
-## Android and IOS planned
+    - Android and IOS planned
